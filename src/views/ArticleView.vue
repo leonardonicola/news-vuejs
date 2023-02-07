@@ -1,6 +1,10 @@
 <template>
   <div class="flex flex-col gap-5" v-if="data">
-    <BodyArticle v-for="child in data.content.child" :parent="child" />
+    <BodyArticle
+      v-for="child in data.content.child"
+      :parent="child"
+      :key="child"
+    />
   </div>
 </template>
 <script setup lang="ts">
