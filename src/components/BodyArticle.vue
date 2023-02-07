@@ -1,4 +1,11 @@
 <template>
+  <img
+    v-if="props.parent.tag === 'img'"
+    :src="props.parent.attr.src"
+    :alt="Array.isArray(props.parent.attr.alt) && props.parent.attr.alt.join(' ')"
+    class="w-96 h-96 object-cover mx-auto"
+  />
+
   <span
     v-if="
       props.parent.node === 'text' &&
@@ -9,7 +16,7 @@
     {{ props.parent.text }}
   </span>
 
-  <p v-if="hasChildren() && props.parent.tag === 'p'">
+  <p v-if="hasChildren() && props.parent.tag === 'p'" >
     <BodyArticle v-for="child in props.parent.child" :parent="child" />
   </p>
 
@@ -32,13 +39,6 @@
     <BodyArticle v-for="child in props.parent.child" :parent="child" />
   </a>
 
-  <object
-    v-if="props.parent.tag === 'img'"
-    :data="props.parent.attr.src "
-    :alt="props.parent.attr.alt.join(' ')"
-    class="w-36 h-36"
-    ></object>
-
   <template v-if="hasChildren() && !tags.includes(props.parent.tag)">
     <BodyArticle v-for="child in props.parent.child" :parent="child" />
   </template>
@@ -47,7 +47,9 @@
 import { onMounted } from 'vue'
 const props = defineProps(['parent'])
 onMounted(() =>
-  document.querySelectorAll('*:empty').forEach((elem) => elem.remove())
+  document
+    .querySelectorAll('*:empty :not(img)')
+    .forEach((elem) => elem.remove())
 )
 const tags = ['a', 'p', 'ul', 'strong', 'img']
 
@@ -66,5 +68,12 @@ span > :has(p) > :has(strong) {
 }
 *:is(span) > :is(p, ul) {
   padding-bottom: 1.2rem;
+}
+img + * {
+  text-align: center;
+}
+
+* {
+  text-align: justify;
 }
 </style>

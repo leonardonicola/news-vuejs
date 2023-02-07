@@ -9,7 +9,10 @@
         :key="article.author"
         class="flex flex-col"
       >
-        <div class="grid grid-cols-3 h-36 overflow-hidden space-x-5">
+        <div
+          class="grid grid-cols-3 h-36 overflow-hidden space-x-5 cursor-pointer"
+          @click="$router.push(`/${encodeURIComponent(article.url)}`)"
+        >
           <img
             :src="article.urlToImage"
             :alt="article.title"

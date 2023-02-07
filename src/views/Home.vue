@@ -1,7 +1,6 @@
 <template>
   <div v-if="articles.length > 0">
-    
-    <Featured :main-article="articles[0]" :side-articles="sideArticles"/>
+      <Featured :main-article="articles[0]" :side-articles="sideArticles" />
   </div>
 </template>
 
@@ -9,7 +8,7 @@
 import { onBeforeMount, ref, computed } from 'vue'
 import { fetchData } from '@/utils/Methods'
 import Featured from '@/layouts/Featured.vue'
-import type { Article } from '@/types/Article';
+import type { Article } from '@/types/Article'
 
 const articles = ref<Article[]>([])
 
