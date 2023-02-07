@@ -13,8 +13,8 @@ const router = createRouter({
     {
       path: '/:url',
       name: 'article',
-      component: ArticleView
-    }
+      component: ArticleView,
+    },
   ],
 })
 

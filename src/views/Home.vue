@@ -1,6 +1,6 @@
 <template>
   <div v-if="articles.length > 0">
-      <Featured :main-article="articles[0]" :side-articles="sideArticles" />
+    <Featured :main-article="articles[0]" :side-articles="sideArticles" />
   </div>
 </template>
 
@@ -13,8 +13,6 @@ import type { Article } from '@/types/Article'
 const articles = ref<Article[]>([])
 
 const sideArticles = computed(() => articles.value.slice(1, 4))
-
-console.log(sideArticles)
 
 onBeforeMount(async () => {
   const articlesResult = await fetchData()
